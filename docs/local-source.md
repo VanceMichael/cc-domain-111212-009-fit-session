@@ -7,3 +7,5 @@
 请求者可以在测试中用 `from scenario import scenario` 和 `ReplaySource(scenario())` 获得同样来源并检查 requests，避免固定端口冲突。现有 scenario 测试核对来源实际返回值，不表示业务语义采集已实现。
 
 标准演练顺序是先准备依赖，再运行 `python3 -m unittest discover -s tests -v`、构建命令和 `python3 app.py demo`。新增能力演示须调用实际新增入口，不以现有结构检查输出代替；演练应选择有限输入，并在九十秒内完成。
+
+定义驱动采集的端到端演练入口是 `python3 app.py collect-demo`，其来源由 `scenario.scenario()` 中的 `GET /device/<name>` 路由提供，包含完整、截断与 CRC 损坏三份本地虚构设备文件；可用 `python3 app.py device-fixtures <目录>` 单独导出。
